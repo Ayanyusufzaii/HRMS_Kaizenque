@@ -1,25 +1,37 @@
-import { Component} from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { HrSideNavbarComponent } from '../hr-side-navbar/hr-side-navbar.component';
 
 @Component({
   selector: 'app-hr-dashboard',
   templateUrl: './hr-dashboard.component.html',
   styleUrls: ['./hr-dashboard.component.css']
 })
-export class HrDashboardComponent {
+export class HrDashboardComponent implements AfterViewInit {
   isSidebarMinimized = false;
 
-  // Inject AuthService and Router into the constructor
+
+  @ViewChild(HrSideNavbarComponent) sidebarComponent!: HrSideNavbarComponent;
+
   constructor(private authService: AuthService, private router: Router) {}
 
-  // Toggle sidebar minimization
- toggleSidebar(): void {
-    this.isSidebarMinimized = !this.isSidebarMinimized;
+  ngAfterViewInit(): void {
+    // Optional: Log or call something on the sidebar
+    console.log('Sidebar component loaded:', this.sidebarComponent);
   }
-  // Logout function to clear user data and navigate to login
+
+  toggleSidebar(): void {
+    this.isSidebarMinimized = !this.isSidebarMinimized;
+
+    // Optional: Call method on sidebar if defined
+    if (this.sidebarComponent) {
+      this.sidebarComponent.isMinimized = this.isSidebarMinimized;
+    }
+  }
+
   logout(): void {
-    this.authService.logout();  // Clear user data from AuthService and localStorage
-    this.router.navigate(['/login']);  // Navigate to login page
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

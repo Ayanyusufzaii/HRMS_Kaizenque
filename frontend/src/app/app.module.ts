@@ -42,7 +42,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { CommonModule } from '@angular/common';
 import { ViewCredComponent } from './component/hr/view-cred/view-cred.component';
 import { HrProfileComponent } from './component/hr/hr-profile/hr-profile.component';
-
+import { EmpSideNavbarComponent } from './component/emp/emp-side-navbar/emp-side-navbar.component';
+import { HrModule } from './component/hr/hr.module';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { HrProfileComponent } from './component/hr/hr-profile/hr-profile.compone
     CurrentProfileComponent,
     ViewCredComponent,
     HrProfileComponent,
+    EmpSideNavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +95,7 @@ import { HrProfileComponent } from './component/hr/hr-profile/hr-profile.compone
     HttpClientModule,
     MatExpansionModule,
     CommonModule,
+    HrModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
